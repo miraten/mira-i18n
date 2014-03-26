@@ -7,7 +7,6 @@ Motivation
 ----------
 
 I inspired by the i18n package in [Telescope](https://github.com/SachaG/Telescope).
-
 It is simple. I loved the simplicity.
 
 
@@ -36,26 +35,33 @@ How to use
 ----------
  1. Install this package to your project
  
- `mrt add mira-i18n`
+`mrt add mira-i18n`
  
  2. Write your own language pack.
+ 
  Refer to the sample in the source: `/test/lang/en.js`
+ 
  Put the language pack file in the directory `/lib` or `/lib/lang`.
  
  3. Write the initialization code.
- It should be loaded later than the package, so '/client/main.js' is good position.
  
- `I18n.registerLanguage('ko', I18nLanguagePack_ko)`
- `I18n.setLanugage('ko');
+ It should be loaded later than the package, so `/client/main.js` is good position.
+ 
+```javascript
+I18n.registerLanguage('ko', I18nLanguagePack_ko) 
+I18n.setLanugage('ko');
+```
  
  where `I18nLanguagePack_ko` is the Object name declared in your language pack.
 
  4. Call the helper in your Template as follows:
  
- `<template name="post">`
- `<label>{{i18n "accounts.user.profile.name"}}</label>`
- `<p>{{i18n "error.invalid" 0=key 1=value}}</p>`
- `</template>`
- 
+```html
+<template name="post">
+  <label>{{i18n "accounts.user.profile.name"}}</label>
+  <p>{{i18n "error.invalid" 0=key 1=value}}</p>
+</template>
+```
+
  
  
