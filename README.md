@@ -82,3 +82,18 @@ I18nLanguagePack_ko = {
 ```
 
 and key, value should be the data in the data context or helper variables.
+
+#### Modular Pack
+If you want to separate the pack into multiple files, especially useful in packages, I think,
+It will give you the solution.
+
+First, separate the pack into multiple file. Refer to the samples in the source `/test/lang/en_accounts.js`.
+
+Second, call `I18n.addPartial(...)` when needed. Refer to the `/test/i18n-test.js` in the source.
+
+Done. That's all.
+
+
+
+
+

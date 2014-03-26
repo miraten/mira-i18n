@@ -3,6 +3,6 @@
   "description": "Internationalization Package for Meteor",
   "homepage": "https://github.com/miraten/mira-i18n",
   "author": "Lee Sangwon <lee@miraten.com>",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "git": "https://github.com/miraten/mira-i18n.git"
 }
