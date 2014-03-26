@@ -2,7 +2,7 @@
   "name": "mira-i18n",
   "description": "Internationalization Package for Meteor",
   "homepage": "https://github.com/miraten/mira-i18n",
-  "author": "Lee Sangwon <leesangwon@me.com>",
-  "version": "0.1.0",
+  "author": "Lee Sangwon <lee@miraten.com>",
+  "version": "0.1.2",
   "git": "https://github.com/miraten/mira-i18n.git"
 }
