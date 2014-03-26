@@ -39,20 +39,20 @@ How to use
  
 #### Write your own language pack.
  
- Refer to the sample in the source: `/test/lang/en.js`
+Refer to the sample in the source: `/test/lang/en.js`
  
- Put the language pack file in the directory `/lib` or `/lib/lang`.
+Put the language pack file in the directory `/lib` or `/lib/lang`.
  
 #### Write the initialization code.
  
- It should be loaded later than the package, so `/client/main.js` is good position.
+It should be loaded later than the package, so `/client/main.js` is good position.
  
 ```javascript
-I18n.registerLanguage('ko', I18nLanguagePack_ko) 
+I18n.registerLanguage('ko', I18nLanguagePack_ko);
 I18n.setLanugage('ko');
 ```
  
- where `I18nLanguagePack_ko` is the Object name declared in your language pack.
+where `I18nLanguagePack_ko` is the Object name declared in your language pack.
 
 #### Call the helper in your Template as follows:
  
@@ -63,5 +63,22 @@ I18n.setLanugage('ko');
 </template>
 ```
 
- 
- 
+where there should be defined in the language pack as follows:
+
+```javascript
+I18nLanguagePack_ko = {
+  accounts: {
+    user: {
+      profile: {
+        name: "John Smith"
+      }
+    }
+  }
+  
+  error: {
+    invalid: "Invalid input for key: {0} and value: {1}"
+  }
+};
+```
+
+and key, value should be the data in the data context or helper variables.
