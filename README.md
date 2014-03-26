@@ -33,17 +33,17 @@ Main features are:
 
 How to use
 ----------
- 1. Install this package to your project
+#### Install this package to your project
  
 `mrt add mira-i18n`
  
- 2. Write your own language pack.
+#### Write your own language pack.
  
  Refer to the sample in the source: `/test/lang/en.js`
  
  Put the language pack file in the directory `/lib` or `/lib/lang`.
  
- 3. Write the initialization code.
+#### Write the initialization code.
  
  It should be loaded later than the package, so `/client/main.js` is good position.
  
@@ -54,7 +54,7 @@ I18n.setLanugage('ko');
  
  where `I18nLanguagePack_ko` is the Object name declared in your language pack.
 
- 4. Call the helper in your Template as follows:
+#### Call the helper in your Template as follows:
  
 ```html
 <template name="post">
