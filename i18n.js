@@ -60,7 +60,7 @@ I18n = {
 
 // for Template 
 if (Meteor.isClient){
-  Handlebars.registerHelper("i18n", function(key, options){
+  UI.registerHelper("i18n", function(key, options){
     var map = options.hash;
     var keys = Object.keys(map);
     var args = [];
