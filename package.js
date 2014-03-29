@@ -3,7 +3,7 @@ Package.describe({
 });
 
 Package.on_use(function (api, where) {
-	api.use(["handlebars"], "client");
+	api.use(["ui"], "client");
   api.add_files(["i18n.js"], ["client", "server"]);
 	api.export("I18n");
 });
