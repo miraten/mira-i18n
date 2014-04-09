@@ -9,24 +9,24 @@ Tinytest.add("I18n - Simple Test", function(test) {
 
   I18n.setLanguage("en");
 
-  value = I18n.value("button.delete");
+  value = I18n.get("button.delete");
   test.equal(value, "Delete");
 
-  value = I18n.value("accounts.command.signin");
+  value = I18n.get("accounts.command.signin");
   test.equal(value, "Sign In");
 
-  value = I18n.value("accounts.command.configureService", ["Facebook"]);
+  value = I18n.get("accounts.command.configureService", {"0":"Facebook"});
   test.equal(value, "Configure Facebook Login");
   
   I18n.setLanguage("ko");
   
-  value = I18n.value("button.delete");
+  value = I18n.get("button.delete");
   test.equal(value, "삭제");
 
-  value = I18n.value("accounts.command.signin");
+  value = I18n.get("accounts.command.signin");
   test.equal(value, "로그인");
 
-  value = I18n.value("accounts.command.configureService", ["Facebook"]);
+  value = I18n.get("accounts.command.configureService", {"0":"Facebook"});
   test.equal(value, "Facebook 로그인 설정");
   
 });

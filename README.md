@@ -12,11 +12,13 @@ It is simple. I loved the simplicity.
 
 However, it didn't satify me. 
 
-First, it has a default language which I do not want.
+First, it has a default language which I do not want to include.
 
 Second, I want a hierachy structure, not serial structure.
 
-Third, I also want modular structure.
+Third, I want some kind of string format support.
+
+Last, I also want a modular structure.
 
 
 So I made it from the scratch.
@@ -27,7 +29,7 @@ Features
 
 Main features are:
  - It is simple too.
- - It is tree structured.
+ - It is hierachy structured.
  - It support simple format string.
  - It support modular files.
 
@@ -84,7 +86,7 @@ I18nLanguagePack_ko = {
 and key, value should be the data in the data context or helper variables.
 
 #### Modular Pack
-If you want to separate the pack into multiple files, especially useful in packages, I think,
+If you want to separate the language pack into multiple files, especially useful in packages, I think,
 It will give you the solution.
 
 First, separate the pack into multiple file. Refer to the samples in the source `/test/lang/en_accounts.js`.

@@ -1,13 +1,6 @@
 /**
  *  Internationalization Package
  *
- *  먼저 loadLocale 메서드를 사용하여 언어팩을 등록한다. 복수의 언어팩을 등록할 수 있다.
- *  그리고, setLocale 메서드로 언어를 지정한다.
- *  이 과정은 일반적으로 '/client/main.js' 파일에서 수행하면 된다.
- *
- *  사용방법은 간단하다. 
- *  템플릿에서 {{i18n 'key'}} 방식으로 사용한다.
- *
  */
 
 I18n = {
@@ -15,6 +8,8 @@ I18n = {
   lang: "en",
 
   langPacks: {},
+  
+  errors: [],
   
   // register the language pack
   registerLanguage: function(lang, map) {
@@ -41,16 +36,20 @@ I18n = {
     });
   },
 
-  // return the string for the given key 
-  value: function(key, args) {
+  // get the tranlated string for the given key 
+  get: function(key, map) {
     var value;
-    try {
-      value = key.split(".").reduce(function(o, i) {return o[i]}, this.langPacks[this.lang]);
-      if (args && args.length > 0) {
-        value = this.sprintf(value, args);
+    if (map) {
+      var keys = Object.keys(map);
+      var args = [];
+      for (var i = 0; i < keys.length; i++) {
+        args[parseInt(keys[i])] = map[keys];
       }
-    } catch (ex) {
-      console.log("fail to the value for the key = '" + key + "' : " + ex.message);  
+
+      value = key.split(".").reduce(function(o, i) {return o[i]}, this.langPacks[this.lang]);
+      value = this.sprintf(value, args);
+    } else {
+      value = key.split(".").reduce(function(o, i) {return o[i]}, this.langPacks[this.lang]);
     }
     
     return value;
@@ -60,14 +59,7 @@ I18n = {
 
 // for Template 
 if (Meteor.isClient){
-  UI.registerHelper("i18n", function(key, options){
-    var map = options.hash;
-    var keys = Object.keys(map);
-    var args = [];
-    for (var i = 0; i < keys.length; i++) {
-      args[parseInt(keys[i])] = map[keys];
-    }
-    
-    return I18n.value(key, args, options.hash);
+  UI.registerHelper("i18n", function(key, options){    
+    return I18n.get(key, options.hash);
   }); 
 }

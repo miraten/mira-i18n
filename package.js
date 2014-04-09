@@ -2,14 +2,14 @@ Package.describe({
   summary: "Internationalization"
 });
 
-Package.on_use(function (api, where) {
+Package.on_use(function(api, where) {
 	api.use(["ui"], "client");
   api.add_files(["i18n.js"], ["client", "server"]);
 	api.export("I18n");
 });
 
-Package.on_test(function (api) {
-  api.use(["mira-i18n", "tinytest", "test-helpers"]);
+Package.on_test(function(api) {
+  api.use(["mira-i18n", "tinytest", "test-helpers"], ["client", "server"]);
   
   api.add_files([
     "test/i18n-test.js",
