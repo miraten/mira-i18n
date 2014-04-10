@@ -66,6 +66,7 @@ I18n = {
 if (Meteor.isClient){
   UI.registerHelper("i18n", function(key, options){  
     if (options.hash) {
+      var map = options.hash;
       var keys = Object.keys(map);
       var args = [];
       for (var i = 0; i < keys.length; i++) {
