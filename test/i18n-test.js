@@ -15,8 +15,14 @@ Tinytest.add("I18n - Simple Test", function(test) {
   value = I18n.get("accounts.command.signin");
   test.equal(value, "Sign In");
 
-  value = I18n.get("accounts.command.configureService", {"0":"Facebook"});
+  value = I18n.get("accounts.command.configureService", ["Facebook"]);
   test.equal(value, "Configure Facebook Login");
+  
+  value = I18n.get("accounts.test.multiParams", ["Facebook", "Twitter", "Google Plus"]);
+  test.equal(value, "The 3 parameters are: Facebook, Twitter, Google Plus");
+  
+  value = I18n.get("accounts.test.duplParams", ["Facebook", "Twitter"]);
+  test.equal(value, "The duplicated parameters are: Facebook, Twitter, Facebook, Twitter");
   
   I18n.setLanguage("ko");
   
@@ -26,7 +32,25 @@ Tinytest.add("I18n - Simple Test", function(test) {
   value = I18n.get("accounts.command.signin");
   test.equal(value, "로그인");
 
-  value = I18n.get("accounts.command.configureService", {"0":"Facebook"});
+  value = I18n.get("accounts.command.configureService", ["Facebook"]);
   test.equal(value, "Facebook 로그인 설정");
+
+  value = I18n.get("accounts.test.multiParams", ["Facebook", "Twitter", "Google Plus"]);
+  test.equal(value, "세 개의 매개변수는 다음과 같다: Facebook, Twitter, Google Plus");
+
+  value = I18n.get("accounts.test.duplParams", ["Facebook", "Twitter"]);
+  test.equal(value, "중복된 매개변수는 다음과 같다: Facebook, Twitter, Facebook, Twitter");
   
+
+  value = I18n.get("test.multiParams", ["Facebook", "Twitter", "Google Plus"]);
+  test.equal(value, "");
+
+  var errors = I18n.getErrors(1);
+  test.equal(errors.length, 1);
+
+  errors = I18n.getErrors();
+  test.equal(errors.length, 1);
+
+  errors = I18n.getErrors();
+  test.equal(errors, null);
 });

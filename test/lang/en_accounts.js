@@ -17,5 +17,9 @@ I18nLanguagePackAccounts_en = {
     create: "Create",
     close: "Close",
     cancel: "Cancel"
+  },
+  test: {
+    multiParams: "The 3 parameters are: {0}, {1}, {2}",
+    duplParams: "The duplicated parameters are: {0}, {1}, {0}, {1}"
   }
 };

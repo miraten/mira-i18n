@@ -17,6 +17,10 @@ I18nLanguagePackAccounts_ko = {
     create: "등록",
     close: "닫기",
     cancel: "취소"
+  },
+  test: {
+    multiParams: "세 개의 매개변수는 다음과 같다: {0}, {1}, {2}",
+    duplParams: "중복된 매개변수는 다음과 같다: {0}, {1}, {0}, {1}"
   }
 };
 
