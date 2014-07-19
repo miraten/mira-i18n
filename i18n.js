@@ -3,6 +3,18 @@
  *
  */
 
+// Dependency for fromNow
+var fromNowDeps = new Deps.Dependency;
+var fromNowHeartBit = 1000 * 60;
+
+var formatDatefromNow = function(time) {
+  fromNowDeps.depend();
+  return moment(time).fromNow();
+};
+
+Meteor.setInterval(function() { fromNowDeps.changed(); }, fromNowHeartBit);
+
+
 I18n = {
 
   lang: "en",
@@ -12,8 +24,10 @@ I18n = {
   errors: [],
   
   // register the language pack
-  registerLanguage: function(lang, map) {
+  registerLanguage: function(lang, map, time_map) {
     this.langPacks[lang] = map;  
+    if (lang != 'en')
+      moment.lang(lang, time_map);
   },
   
   // add partial language pack to the main pack
@@ -24,8 +38,17 @@ I18n = {
   // set active language
   setLanguage: function(lang) {
     this.lang = lang;
+    moment.lang(lang);
   },
-  
+
+  registerTimeZone: function(data) {
+    moment.tz.load(data);
+  },
+
+  addTimeZone: function(zone) {
+    moment.tz.add(zone);
+  },
+
   // return the formatted string with the parameters
   sprintf: function(format, args) {
     return format.replace(/{(\d+)}/g, function(match, number) { 
@@ -44,11 +67,22 @@ I18n = {
     } catch (ex) {
       if (! this.errors instanceof Array)
         this.errors = [];
-        
-      this.errors.push(ex.message);
+
+      if (this.errors)
+        this.errors.push(ex.message);
     }
     
     return value;
+  },
+
+  formatDate: function(time, format, timezone) {
+    format = format || 'YYYY MM DD hh:mm:ss';
+    if (format === 'relative')
+      return formatDatefromNow(time);
+    else if (timezone)
+      return moment.tz(time, timezone).format(format);
+    else
+      return moment(time).format(format);
   },
 
   getErrors: function(keep) {
@@ -76,6 +110,15 @@ if (Meteor.isClient){
     } else {
       return I18n.get(key);
     }
-    
   }); 
+
+  UI.registerHelper('formatDate', function(param) {
+    if (typeof param === 'number') {
+      return I18n.formatDate(param);
+    } else if (typeof param === 'object') {
+      return I18n.formatDate(param.hash.value, param.hash.format);
+    } else {
+      return '';
+    }
+  });
 }
