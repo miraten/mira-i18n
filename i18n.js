@@ -71,7 +71,7 @@ I18n = {
         this.errors.push(ex.message);
     }
     
-    return value;
+    return (value) ? value : key;
   },
 
   formatDate: function(time, format, timezone) {
