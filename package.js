@@ -1,7 +1,7 @@
 Package.describe({
   name: 'leesangwon:mira-i18n',
   summary: 'Internationalization package with moment, moment-timezone ',
-  version: '0.5.1',
+  version: '0.5.2',
   git: 'https://github.com/miraten/mira-i18n.git'
 });
 
