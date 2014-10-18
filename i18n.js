@@ -4,7 +4,7 @@
  */
 
 // Dependency for fromNow
-var fromNowDeps = new Deps.Dependency;
+var fromNowDeps = new Tracker.Dependency;
 var fromNowHeartBit = 1000 * 60;
 
 var formatDatefromNow = function(time) {
@@ -13,7 +13,6 @@ var formatDatefromNow = function(time) {
 };
 
 Meteor.setInterval(function() { fromNowDeps.changed(); }, fromNowHeartBit);
-
 
 I18n = {
 
@@ -27,7 +26,7 @@ I18n = {
   registerLanguage: function(lang, map, time_map) {
     this.langPacks[lang] = map;  
     if (lang != 'en')
-      moment.lang(lang, time_map);
+      moment.locale(lang, time_map);
   },
   
   // add partial language pack to the main pack
@@ -38,7 +37,7 @@ I18n = {
   // set active language
   setLanguage: function(lang) {
     this.lang = lang;
-    moment.lang(lang);
+    moment.locale(lang);
   },
 
   registerTimeZone: function(data) {
@@ -98,7 +97,7 @@ I18n = {
 
 // for Template 
 if (Meteor.isClient){
-  UI.registerHelper("i18n", function(key, options){  
+  Template.registerHelper("i18n", function(key, options){
     if (options.hash) {
       var map = options.hash;
       var keys = Object.keys(map);
@@ -110,9 +109,9 @@ if (Meteor.isClient){
     } else {
       return I18n.get(key);
     }
-  }); 
+  });
 
-  UI.registerHelper('formatDate', function(param) {
+  Template.registerHelper('formatDate', function(param) {
     if (typeof param === 'number') {
       return I18n.formatDate(param);
     } else if (typeof param === 'object') {

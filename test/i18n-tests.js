@@ -27,10 +27,10 @@ Tinytest.add("I18n - Simple Test", function(test) {
   test.equal(value, "The duplicated parameters are: Facebook, Twitter, Facebook, Twitter");
   
   value = I18n.formatDate(new Date(), 'L');
-  test.equal(value, "07/19/2014");
+  test.equal(value, "10/18/2014");
 
   value = I18n.formatDate(new Date(), 'L', 'Asia/Seoul');
-  test.equal(value, "07/19/2014");
+  test.equal(value, "10/18/2014");
 
   I18n.setLanguage("ko");
   
