@@ -1,5 +1,10 @@
 # Update History
 
+## v0.7.1
+  Moment.js is removed. Use 'leesangwon:moment' package
+  Momone-timezone is also removed.
+  Added auto updated feature when language is changed by 'setLanguage'
+  
 ## v0.5.2  
 
 * Added History

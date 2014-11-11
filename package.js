@@ -1,21 +1,21 @@
 Package.describe({
   name: 'leesangwon:mira-i18n',
   summary: 'Internationalization package with moment, moment-timezone ',
-  version: '0.5.2',
+  version: '0.7.1',
   git: 'https://github.com/miraten/mira-i18n.git'
 });
 
+
 Package.onUse(function(api) {
-  api.versionsFrom('METEOR@0.9.3.1');
+  api.versionsFrom('METEOR@1.0');
   api.addFiles([
-    'i18n.js',
-    'moment.js',
-    'moment-timezone.js'
+    'i18n.js'
   ], ['client', 'server']);
 
   api.use([
     'tracker',
-    'underscore'
+    'underscore',
+    'leesangwon:moment@2.8.3',
   ], ['client', 'server']);
 
   api.use([

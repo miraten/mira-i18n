@@ -3,16 +3,19 @@
  *
  */
 
-// Dependency for fromNow
-var fromNowDeps = new Tracker.Dependency;
+// Tracker for fromNow
+var fromNowTracker = new Tracker.Dependency;
 var fromNowHeartBit = 1000 * 60;
 
-var formatDatefromNow = function(time) {
-  fromNowDeps.depend();
+var formatDateFromNow = function(time) {
+  fromNowTracker.depend();
   return moment(time).fromNow();
 };
 
-Meteor.setInterval(function() { fromNowDeps.changed(); }, fromNowHeartBit);
+Meteor.setInterval(function() { fromNowTracker.changed(); }, fromNowHeartBit);
+
+// Tracker for language
+var languageTracker = new Tracker.Dependency;
 
 I18n = {
 
@@ -27,25 +30,25 @@ I18n = {
     this.langPacks[lang] = map;  
     if (lang != 'en')
       moment.locale(lang, time_map);
+    languageTracker.changed();
   },
   
   // add partial language pack to the main pack
   addPartial: function(lang, key, map) {
     this.langPacks[lang][key] = map;
+    languageTracker.changed();
+  },
+
+  getLanguage: function() {
+    languageTracker.depend();
+    return this.lang;
   },
   
   // set active language
   setLanguage: function(lang) {
     this.lang = lang;
     moment.locale(lang);
-  },
-
-  registerTimeZone: function(data) {
-    moment.tz.load(data);
-  },
-
-  addTimeZone: function(zone) {
-    moment.tz.add(zone);
+    languageTracker.changed();
   },
 
   // return the formatted string with the parameters
@@ -71,15 +74,14 @@ I18n = {
         this.errors.push(ex.message);
     }
     
+    languageTracker.depend();
     return (value) ? value : key;
   },
 
-  formatDate: function(time, format, timezone) {
+  formatDate: function(time, format) {
     format = format || 'YYYY MM DD hh:mm:ss';
     if (format === 'relative')
-      return formatDatefromNow(time);
-    else if (timezone)
-      return moment.tz(time, timezone).format(format);
+      return formatDateFromNow(time);
     else
       return moment(time).format(format);
   },

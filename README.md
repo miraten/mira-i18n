@@ -13,14 +13,19 @@ Main features are:
  - It is simple.
  - It is hierachy structured.
  - It support simple format string.
- - It includes [moment.js](http://momentjs.com) & [moment-timezone.js](http://momentjs.com/timezone)
+ - It uses [moment.js](http://momentjs.com)
  - It support modular files.
 
 How to use
 ----------
+#### Pre-requisite
+It uses [moment.js](http://momentjs.com/).
+
+`meteor add leesangwon:moment`
+
 #### Install this package to your project
- 
-`mrt add mira-i18n`
+
+`meteor add leesangwon:mira-i18n`
  
 #### Write your own language pack.
  
