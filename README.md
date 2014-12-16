@@ -1,6 +1,11 @@
 mira-i18n
 =========
 
+It was deprecated.
+
+Use [leesangwon:i18n](https://github.com/miraten/meteor-i18n).
+
+
 Internationalization Package supporting string and time for Meteor JS
 
 It is inspired by the i18n package in [Telescope](https://github.com/SachaG/Telescope).
